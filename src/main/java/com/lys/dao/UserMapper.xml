@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lys.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.lys.model.User">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="app_id" jdbcType="BIGINT" property="appId" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="role_type" jdbcType="TINYINT" property="roleType" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="last_inspect_time" jdbcType="TIMESTAMP" property="lastInspectTime" />
+    <result column="privilege_type" jdbcType="TINYINT" property="privilegeType" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, app_id, phone, real_name, nickname, avatar, sex, id_card, role_type, position, 
+    last_inspect_time, privilege_type, status, created_time, updated_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lys.model.User">
+    insert into user (id, app_id, phone, 
+      real_name, nickname, avatar, 
+      sex, id_card, role_type, 
+      position, last_inspect_time, privilege_type, 
+      status, created_time, updated_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{appId,jdbcType=BIGINT}, #{phone,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=TINYINT}, #{idCard,jdbcType=VARCHAR}, #{roleType,jdbcType=TINYINT}, 
+      #{position,jdbcType=VARCHAR}, #{lastInspectTime,jdbcType=TIMESTAMP}, #{privilegeType,jdbcType=TINYINT}, 
+      #{status,jdbcType=TINYINT}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lys.model.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="realName != null">
+        real_name,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+      <if test="roleType != null">
+        role_type,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="lastInspectTime != null">
+        last_inspect_time,
+      </if>
+      <if test="privilegeType != null">
+        privilege_type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null">
+        #{roleType,jdbcType=TINYINT},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="lastInspectTime != null">
+        #{lastInspectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="privilegeType != null">
+        #{privilegeType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lys.model.User">
+    update user
+    <set>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null">
+        role_type = #{roleType,jdbcType=TINYINT},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="lastInspectTime != null">
+        last_inspect_time = #{lastInspectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="privilegeType != null">
+        privilege_type = #{privilegeType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lys.model.User">
+    update user
+    set app_id = #{appId,jdbcType=BIGINT},
+      phone = #{phone,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      role_type = #{roleType,jdbcType=TINYINT},
+      position = #{position,jdbcType=VARCHAR},
+      last_inspect_time = #{lastInspectTime,jdbcType=TIMESTAMP},
+      privilege_type = #{privilegeType,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
